@@ -5,22 +5,24 @@
     <title>Accident</title>
 </head>
 <body>
-Hello : ${jedis}
+Hello : ${accidents}
 
 <table class="table">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">Имя</th>
-        <th scope="col">Фамилия</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Адрес</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${jedis}" var="jedi">
+    <c:forEach items="${accidents}" var="accident">
     <tr>
-        <th scope="row">${jedis.indexOf(jedi)+1}</th>
-        <td><c:out value="${jedi}"/></td>
-        <td><c:out value="${jedi.length()}"/></td>
+        <th scope="row"><c:out value="${accident.getId()}"/></th>
+        <td><c:out value="${accident.getName()}"/></td>
+        <td><c:out value="${accident.getText()}"/></td>
+        <td><c:out value="${accident.getAddress()}"/></td>
     </tr>
     </c:forEach>
     </tbody>

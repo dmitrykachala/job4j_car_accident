@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+/*@Controller
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
@@ -21,4 +21,4 @@ public class IndexControl {
         model.addAttribute("jedis", list);
         return "index";
     }
-}
+}*/
