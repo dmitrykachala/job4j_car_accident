@@ -4,16 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.model.Accident;
-
-import java.util.ArrayList;
-import java.util.List;
+import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.service.AccidentService;
 
 @Controller
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
 
-        List<Accident> list = new ArrayList<>();
+        AccidentMem repo = new AccidentMem();
 
         Accident ac1 = new Accident();
         ac1.setId(1);
@@ -33,11 +32,13 @@ public class IndexControl {
         ac3.setText("third accident");
         ac3.setAddress("address 3");
 
-        list.add(ac1);
-        list.add(ac2);
-        list.add(ac3);
+        repo.add(ac1);
+        repo.add(ac2);
+        repo.add(ac3);
 
-        model.addAttribute("accidents", list);
+        AccidentService service = new AccidentService(repo);
+
+        model.addAttribute("accidents", service.getAccidents());
         return "index";
     }
 }
