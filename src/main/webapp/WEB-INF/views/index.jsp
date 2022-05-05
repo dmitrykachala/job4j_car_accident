@@ -5,7 +5,9 @@
     <title>Accident</title>
 </head>
 <body>
-Hello : ${accidents}
+<!--Hello : ${accidents}-->
+
+<a href="<c:url value='/create'/>">Добавить инцидент</a>
 
 <table class="table">
     <thead>
@@ -23,6 +25,7 @@ Hello : ${accidents}
         <td><c:out value="${accident.getName()}"/></td>
         <td><c:out value="${accident.getText()}"/></td>
         <td><c:out value="${accident.getAddress()}"/></td>
+        <td/><a href="<c:url value='/edit/${accident.getId()}'/>">Редактировать инцидент</a></td>
     </tr>
     </c:forEach>
     </tbody>
