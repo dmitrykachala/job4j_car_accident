@@ -1,12 +1,14 @@
 package ru.job4j.accident.control;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.service.AccidentService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,9 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 public class AccidentControl {
 
     private final AccidentMem accidents;
+    private final AccidentService service;
 
-    public AccidentControl(AccidentMem accidents) {
+    public AccidentControl(AccidentMem accidents, AccidentService service) {
         this.accidents = accidents;
+        this.service = service;
+    }
+
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("accidents", service.getAccidents());
+        return "index";
     }
 
     @GetMapping("/create")

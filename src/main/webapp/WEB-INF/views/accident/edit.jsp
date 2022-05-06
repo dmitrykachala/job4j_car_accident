@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td>Id:</td>
-            <td><input type='text' name='id' value="<c:out value="${accident.getId()}"/>"></td>
+            <td><input type='text' readonly name='id' value="<c:out value="${accident.getId()}"/>"></td>
         </tr>
         <tr>
             <td>Название:</td>
