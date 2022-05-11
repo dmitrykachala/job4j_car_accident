@@ -50,9 +50,6 @@ public class AccidentMem {
     }
 
     public void edit(Accident accident) {
-        Accident a = getAccById(accident.getId());
-        a.setAddress(accident.getAddress());
-        a.setText(accident.getText());
-        a.setName(accident.getName());
+        accidents.replace(accident.getId(), accident);
     }
 }
