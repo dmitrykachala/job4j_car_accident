@@ -11,24 +11,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AccidentMem {
 
     private HashMap<Integer, Accident> accidents = new HashMap<>();
-    private AtomicInteger id = new AtomicInteger(0);
+    private AtomicInteger id = new AtomicInteger(1);
 
     public AccidentMem() {
 
         Accident ac1 = new Accident();
-        ac1.setId(id.getAndIncrement());
         ac1.setName("first");
         ac1.setText("first accident");
         ac1.setAddress("address 1");
 
         Accident ac2 = new Accident();
-        ac2.setId(id.getAndIncrement());
         ac2.setName("second");
         ac2.setText("second accident");
         ac2.setAddress("address 2");
 
         Accident ac3 = new Accident();
-        ac3.setId(id.getAndIncrement());
         ac3.setName("third");
         ac3.setText("third accident");
         ac3.setAddress("address 3");
@@ -52,4 +49,10 @@ public class AccidentMem {
         return accidents.values();
     }
 
+    public void edit(Accident accident) {
+        Accident a = getAccById(accident.getId());
+        a.setAddress(accident.getAddress());
+        a.setText(accident.getText());
+        a.setName(accident.getName());
+    }
 }

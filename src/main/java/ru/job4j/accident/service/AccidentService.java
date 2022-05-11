@@ -23,4 +23,11 @@ public class AccidentService {
         return repo.getAccidents();
     }
 
+    public void save(Accident accident) {
+        if (accident.getId() <= 0) {
+            repo.add(accident);
+        } else {
+            repo.edit(accident);
+        }
+    }
 }

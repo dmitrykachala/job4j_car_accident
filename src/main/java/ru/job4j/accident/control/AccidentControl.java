@@ -15,11 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class AccidentControl {
 
-    private final AccidentMem accidents;
     private final AccidentService service;
 
-    public AccidentControl(AccidentMem accidents, AccidentService service) {
-        this.accidents = accidents;
+    public AccidentControl(AccidentService service) {
         this.service = service;
     }
 
@@ -36,13 +34,13 @@ public class AccidentControl {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") int itemId, HttpServletRequest req) {
-        req.setAttribute("accident", accidents.getAccById(itemId));
+        req.setAttribute("accident", service.getAccById(itemId));
         return "accident/edit";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        accidents.add(accident);
+        service.save(accident);
         return "redirect:/";
     }
 }
