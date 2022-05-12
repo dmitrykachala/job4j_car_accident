@@ -9,6 +9,17 @@
 
 <a href="<c:url value='/create'/>">Добавить инцидент</a>
 
+<c:forEach items="${accidents}" var="accident">
+    <div>
+        <span>
+            <c:out value="${accident.name}"/>
+        </span>
+        <span>
+             <a href="<c:url value='/update?id=${accident.id}'/>">Изменить только название инцидента</a>
+        </span>
+    </div>
+</c:forEach>
+
 <table class="table">
     <thead>
     <tr>
