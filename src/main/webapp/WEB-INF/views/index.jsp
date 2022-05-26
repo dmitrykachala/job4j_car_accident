@@ -16,6 +16,7 @@
         <th scope="col">Имя</th>
         <th scope="col">Описание</th>
         <th scope="col">Адрес</th>
+        <th scope="col">Тип события</th>
     </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
         <td><c:out value="${accident.getName()}"/></td>
         <td><c:out value="${accident.getText()}"/></td>
         <td><c:out value="${accident.getAddress()}"/></td>
+        <td><c:out value="${accident.getType().getName()}"/></td>
         <td/><a href="<c:url value='/edit?id=${accident.id}'/>">Редактировать инцидент</a></td>
     </tr>
     </c:forEach>

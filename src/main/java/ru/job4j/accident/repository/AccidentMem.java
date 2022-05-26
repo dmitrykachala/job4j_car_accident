@@ -2,18 +2,26 @@ package ru.job4j.accident.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.model.AccidentType;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
 
-    private HashMap<Integer, Accident> accidents = new HashMap<>();
+    private Map<Integer, Accident> accidents = new HashMap<>();
+
+    private Map<Integer, AccidentType> accidentTypes = new HashMap<>();
     private AtomicInteger id = new AtomicInteger(1);
 
+    private AtomicInteger idType = new AtomicInteger(1);
+
     public AccidentMem() {
+
+        add(AccidentType.of(1, "Две машины"));
+        add(AccidentType.of(2, "Машина и человек"));
+        add(AccidentType.of(3, "Машина и велосипед"));
 
         Accident ac1 = new Accident();
         ac1.setName("first");
@@ -41,6 +49,11 @@ public class AccidentMem {
         accidents.put(accident.getId(), accident);
     }
 
+    public void add(AccidentType accidentType) {
+        accidentType.setId(idType.getAndIncrement());
+        accidentTypes.put(accidentType.getId(), accidentType);
+    }
+
     public Accident getAccById(int id) {
         return accidents.get(id);
     }
@@ -49,7 +62,15 @@ public class AccidentMem {
         return accidents.values();
     }
 
+    public Collection<AccidentType> getAccidentTypes() {
+        return accidentTypes.values();
+    }
+
     public void edit(Accident accident) {
         accidents.replace(accident.getId(), accident);
+    }
+
+    public AccidentType getAccidentTypeById(int id) {
+        return accidentTypes.get(id);
     }
 }

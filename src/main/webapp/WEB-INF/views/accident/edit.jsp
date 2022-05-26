@@ -21,6 +21,20 @@
             <td><input type='text' name='address' value="<c:out value="${accident.getAddress()}"/>"></td>
         </tr>
         <tr>
+            <td>Тип:</td>
+            <td>
+                <select name="type.id">
+                    <c:forEach var="type" items="${types}" >
+                        <c:if test = "${type.id == accident.getType().getId()}">
+                        <option value="${type.id}" selected>${type.name}</option>
+                        </c:if>>
+                        <c:if test = "${type.id != accident.getType().getId()}">
+                            <option value="${type.id}">${type.name}</option>
+                        </c:if>>
+                    </c:forEach>
+                </select>
+        </tr>
+        <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
         </tr>
     </table>
