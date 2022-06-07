@@ -3,6 +3,7 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,15 +14,24 @@ public class AccidentMem {
     private Map<Integer, Accident> accidents = new HashMap<>();
 
     private Map<Integer, AccidentType> accidentTypes = new HashMap<>();
+
+    private Map<Integer, Rule> rules = new HashMap<>();
+
     private AtomicInteger id = new AtomicInteger(1);
 
     private AtomicInteger idType = new AtomicInteger(1);
+
+    private AtomicInteger idRule = new AtomicInteger(1);
 
     public AccidentMem() {
 
         add(AccidentType.of(1, "Две машины"));
         add(AccidentType.of(2, "Машина и человек"));
         add(AccidentType.of(3, "Машина и велосипед"));
+
+        add(Rule.of(1, "Статья 1"));
+        add(Rule.of(2, "Статья 2"));
+        add(Rule.of(3, "Статья 3"));
 
         Accident ac1 = new Accident();
         ac1.setName("first");
@@ -54,6 +64,11 @@ public class AccidentMem {
         accidentTypes.put(accidentType.getId(), accidentType);
     }
 
+    public void add(Rule rule) {
+        rule.setId(idRule.getAndIncrement());
+        rules.put(rule.getId(), rule);
+    }
+
     public Accident getAccById(int id) {
         return accidents.get(id);
     }
@@ -66,11 +81,19 @@ public class AccidentMem {
         return accidentTypes.values();
     }
 
+    public Collection<Rule> getRules() {
+        return rules.values();
+    }
+
     public void edit(Accident accident) {
         accidents.replace(accident.getId(), accident);
     }
 
     public AccidentType getAccidentTypeById(int id) {
         return accidentTypes.get(id);
+    }
+
+    public Rule getRuleById(int id) {
+        return rules.get(id);
     }
 }

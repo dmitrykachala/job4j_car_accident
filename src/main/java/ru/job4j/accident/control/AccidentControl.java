@@ -7,6 +7,7 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.service.AccidentService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +31,17 @@ public class AccidentControl {
 
         model.addAttribute("types", service.getAccidentTypes());
 
+        model.addAttribute("rules", service.getRules());
+
         return "accident/create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident) {
-        service.save(accident);
+    public String save(@ModelAttribute Accident accident, HttpServletRequest req) {
+
+        String[] ids = req.getParameterValues("rIds");
+
+        service.save(accident, ids);
         return "redirect:/";
     }
 
@@ -44,6 +50,7 @@ public class AccidentControl {
 
         model.addAttribute("types", service.getAccidentTypes());
         model.addAttribute("accident", service.getAccById(id));
+        model.addAttribute("rules", service.getRules());
         return "accident/edit";
     }
 }
