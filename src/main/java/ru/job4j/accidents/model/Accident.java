@@ -1,4 +1,4 @@
-package ru.job4j.accident.model;
+package ru.job4j.accidents.model;
 
 import java.util.Objects;
 import java.util.Set;

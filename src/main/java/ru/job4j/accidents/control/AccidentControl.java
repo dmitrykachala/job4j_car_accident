@@ -1,15 +1,12 @@
-package ru.job4j.accident.control;
+package ru.job4j.accidents.control;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.model.AccidentType;
-import ru.job4j.accident.service.AccidentService;
+import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.service.AccidentService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class AccidentControl {
