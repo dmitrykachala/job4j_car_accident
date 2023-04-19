@@ -1,12 +1,11 @@
 package ru.job4j.accidents.control;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.service.AccidentService;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AccidentControl {
